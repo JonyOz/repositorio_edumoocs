@@ -1,0 +1,44 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Preguntas Recibidas{% endblock titulo %}
+{% block contenido %}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>Id</th>
+                <th>Usuario</th>
+                <th>Mensaje</th>
+                <th>Fecha de Pregunta</th>
+                <th>Es Predefinida</th>
+                <th>Respondida</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pregunta in preguntas %}
+            <tr>
+                <td>{{ pregunta.id }}</td>
+                <td>{{ pregunta.nombre_usuario }}</td>
+                <td>{{ pregunta.mensaje }}</td>
+                <td>{{ pregunta.fecha_pregunta }}</td>
+                <td>{{ pregunta.es_predefinida|yesno:"Sí,No" }}</td>
+                <td>{{ pregunta.respondida|yesno:"Sí,No" }}</td>
+                <td>
+                    <!-- Botón para responder -->
+                    <a href="{% url 'responder_pregunta' pregunta.id %}">
+                        <button class="btn btn-edit btn-sm">&#x270E; Responder</button>
+                    </a>
+                    <!-- Botón para eliminar -->
+                    <a href="{% url 'eliminar_pregunta' pregunta.id %}" onclick="return confirm('¿Estás seguro de que deseas eliminar esta pregunta?');">
+                        <button class="btn btn-delete btn-sm">&#x1F5D1; Eliminar</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock contenido %}
+
+
+

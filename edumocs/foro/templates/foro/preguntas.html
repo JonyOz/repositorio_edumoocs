@@ -1,0 +1,32 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Preguntas{% endblock titulo %}
+{% load static %}
+{% block contenido %}
+<main>
+    <section class="faq-section">
+        <div class="faq-grid">
+            <!-- Mostrar preguntas recientes que no son predefinidas -->
+            {% for pregunta in preguntas_respuestas %}
+            <div class="faq-item">
+                <h4>{{ pregunta.mensaje }}</h4>
+                <p><strong>Respuesta:</strong> {{ pregunta.respuestas.first.respuesta }}</p>
+                <span>&#10132;</span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="comments-section">
+        <h2>¿Tu pregunta no aparece?</h2>
+        <div class="comments-carousel">
+    
+            <div class="comment">
+                <img src="{% static "edumocs/images/profile.png" %}" alt="User Icon">
+                <p>¿Necesitas más información o tienes una pregnta? Consulta nuestro chat de ayuda</p>
+                <a href="{% url "Foro" %}"><button class="btn btn-primary">Chat de Ayuda</button><a>
+            </div>
+           
+        </div>
+    </section>
+</main>
+{% endblock contenido %}
+

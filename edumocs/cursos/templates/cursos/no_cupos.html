@@ -1,0 +1,12 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% load static %}
+{% block contenido %}
+<link rel="stylesheet" href="{% static 'css/no_cupos.css' %}">
+<div class="section">
+    <div class="container">
+        <h1 class="header">Cupos Agotados</h1>
+        <p>No hay cupos disponibles para este curso en este momento. Por favor, revisa otros cursos disponibles o intenta registrarte más tarde.</p>
+        <a href="{% url 'Cursos' %}" class="btn-custom">Ver Cursos Disponibles</a>
+    </div>
+</div>
+{% endblock %}

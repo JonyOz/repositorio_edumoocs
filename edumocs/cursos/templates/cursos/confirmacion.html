@@ -1,0 +1,19 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %} Confirmación de Preinscripción {% endblock titulo %}
+{% load static %}
+
+{% block contenido %}
+<main class="container d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="form-container text-center">
+        <h2 class="text-white">¡Gracias por tu preinscripción!</h2>
+        <p class="text-white">Tu preinscripción ha sido recibida con éxito. Pronto recibirás más información en tu correo electrónico.</p>
+        <hr class="bg-white">
+        <p class="text-white mb-4">Si tienes alguna pregunta, no dudes en contactarnos.</p>
+        <a href="{% url 'Cursos' %}" class="btn-custom-confirm">Ver Cursos</a>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock contenido %}

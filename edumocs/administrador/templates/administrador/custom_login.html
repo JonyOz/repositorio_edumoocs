@@ -1,0 +1,13 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %}Iniciar
+Sesión{%endblock titulo %} {% block contenido %}
+<div class="login-background">
+  <div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    </form>
+    <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+  </div>
+</div>
+{% endblock %} {% block boton %} {% endblock boton %}

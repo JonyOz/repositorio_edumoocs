@@ -1,0 +1,91 @@
+{% extends "contenido/BaseNavBar.html" %}
+
+{%block titulo%}
+  {{ cursos.nombre }}
+{%endblock titulo%}
+
+{% block contenido %}
+<main class="container mt-5 pt-5">
+  <div class="row">
+    <!-- Sección de Bienvenida -->
+    <div class="col-md-8">
+      <div class="card mb-4 shadow-sm">
+        <img
+          src="{{cursos.imagen.url}}"
+          alt="Aqui puse mi imagen"
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h2 class="card-title">Bienvenido</h2>
+          <p class="card-text">{{cursos.descripcion}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text">Costo: {{cursos.costo}} MXN</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text">Cupos Restantes: {{cursos.cupos}}</p>
+            <p class="card-text">Total de Horas: {{cursos.horas}} Horas</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text">Fecha de Inicio: {{cursos.fecha_inicio}}</p>
+            <p class="card-text">
+              Fecha de finalización: {{cursos.fecha_termino}}
+            </p>
+          </div>
+
+          {% if cursos.cupos > 0 %}
+          <a
+            href="{% url 'Preinscripcion' cursos.id %}"
+            class="btn btn-primary btn-lg"
+          >
+            Pre-Inscribirse
+          </a>
+          {% else %}
+          <p class="text-danger">
+            Lo sentimos, los cupos para este curso están agotados. Consulta
+            nuestro
+            <a href="{% url 'Foro' %}" class="text-decoration-underline"
+              >chat de ayuda</a
+            >
+            para más información de este curso.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Profesor y Temas -->
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body text-center">
+          <img
+            src="professor.jpg"
+            alt="Profesor"
+            class="img-fluid rounded-circle mb-3"
+            width="150"
+          />
+          <h4 class="card-title preserve-line-breaks">{{cursos.profesor}}</h4>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Contenido:</h5>
+          <ul class="list-group">
+            <li class="list-group-item preserve-line-breaks">
+              {{cursos.contenido|truncatechars:800}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm">
+        {% load static %}
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe
+            src="{% static 'edumocs/images/video.webm' %}"
+            alt="Video"
+            class="embed-responsive-item"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock contenido %}

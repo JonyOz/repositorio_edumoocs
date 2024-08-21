@@ -1,0 +1,141 @@
+{% block navbar %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock titulo %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'edumocs/css/styles.css' %}">
+    <script src="{% static 'edumocs/js/respuesta.js' %}"></script>
+
+</head>
+{%if request.user.is_authenticated%}
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="{% url 'Inicio' %}">
+        <img src="{%static '/edumocs/images/logo.webp'%}" width="30" height="30" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "Administrador" %}">Inicio</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "Dashboard" %}">Cursos Populares</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "verPreguntas" %}">Chat de Ayuda</a>
+            </li>
+
+        </ul>
+        
+    {% if request.user.is_authenticated %}
+    <div class="dropdown">
+        <a href="{% url "Administrador" %}" class="nav-link" id="notificacionesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="{% static 'edumocs/images/campana.png' %}" alt="Notificaciones" width="30" height="30">
+            {% if notificaciones_count > 0 %}
+                <span class="badge badge-danger">{{ notificaciones_count }}</span>
+            {% endif %}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificacionesDropdown">
+            {% if notificacion.id %}
+                <a href="{% url 'responder_pregunta' pregunta_id=notificacion.id %}">Responder</a>
+            {% else %}
+                <span>Respuesta no disponible</span>
+            {% endif %}
+
+        {% if notificaciones %}
+        {% for notificacion in notificaciones %}
+        <div>
+          Pregunta: {{ notificacion.mensaje }}
+          <!-- Asegurarte de que cada notificación tenga un 'id' antes de intentar crear el enlace -->
+          <a href="{% url 'responder_pregunta' pregunta_id=notificacion.id %}">Responder</a>
+        </div>
+      {% endfor %}
+        {% else %}
+            <a class="dropdown-item" href="#">No hay notificaciones</a>
+        {% endif %}
+    </div>
+</div>
+        <!-- Mostrar imagen si el usuario tiene la sesión activa -->
+        <a class="navbar-brand" href="{% url 'Administrador' %}">
+            <img
+              src="{% static '/edumocs/images/profile.png' %}"
+              width="30"
+              height="30"
+              class="d-inline-block align-top"
+              alt="Admin"
+            />
+          </a>
+    {% else %}
+        <!-- Mostrar botón de Acceder si el usuario no ha iniciado sesión -->
+        <a href="{% url 'Login' %}">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="button">Acceder</button>
+        </a>
+    {% endif %}
+
+        </div>  
+    </nav>
+
+
+{%else%}
+
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="{% url 'Inicio' %}">
+        <img src="{% static '/edumocs/images/logo.webp' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'Inicio' %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'Acercade' %}">Acerca de nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'Cursos' %}">Cursos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'Tablon' %}">Preguntas Frecuentes</a>
+            </li>
+        </ul>
+        {% block boton %}
+        {% if request.user.is_authenticated %}
+            <!-- Mostrar imagen si el usuario tiene la sesión activa -->
+            <a class="navbar-brand" href="{% url 'Administrador' %}">
+                <img src="{% static '/edumocs/images/profile.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Admin" />
+            </a>
+        {% else %}
+            <!-- Mostrar botón de Acceder si el usuario no ha iniciado sesión -->
+            <a href="{% url 'Login' %}">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="button">Acceder</button>
+            </a>
+        {% endif %}
+        {% endblock boton %}
+    </div>  
+</nav>
+{%endif%}
+
+{% endblock navbar %}
+
+{% block contenido %}{% endblock contenido %}
+
+<footer class="footer">
+    <p>Obtén el conocimiento y la calidad que necesitas para continuar con tu carrera profesional y lo que necesitas al alcance de un botón. Pre-orden ahora.</p>
+    <p>Copyright @ 2024 Edumocs. All rights reserved.</p>
+    <div>
+        <a href="#"><img src="{% static '/edumocs/images/facebook.png' %}" alt="Facebook" width="30" height="30"></a>
+        <a href="#"><img src="{% static '/edumocs/images/twitter.png' %}" alt="Twitter" width="30" height="30"></a>
+        <a href="#"><img src="{% static '/edumocs/images/instagram.png' %}" alt="Instagram" width="30" height="30"></a>
+    </div>
+</footer>

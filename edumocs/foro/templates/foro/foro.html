@@ -1,0 +1,33 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Chat de Ayuda{% endblock titulo %}
+{% load static %}
+
+{% block contenido %}
+<div class="container chat-container">
+    <h2>Chat de Ayuda</h2>
+    <div id="chat-log" style="border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll;">
+        <!-- Aquí se mostrarán los mensajes -->
+    </div>
+    <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+    <input type="hidden" id="enviar-pregunta-url" value="{% url 'enviar_pregunta' %}">
+    
+    <label for="predefined-questions">Elija una pregunta frecuente:</label>
+    <select id="predefined-questions">
+        <option value="">Selecciona...</option>
+        {% for pregunta in preguntas %}
+        <option value="{{ pregunta.id }}">{{ pregunta.mensaje }}</option>
+        {% endfor %}
+    </select>
+    
+    <input id="chat-message-input" type="text" size="100" placeholder="Escribe tu pregunta aquí...">
+    <button id="chat-message-submit">Enviar</button>
+    
+</div>
+
+<!-- Cargar jQuery primero -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Cargar el archivo JavaScript externo -->
+<script src="{% static 'edumocs/js/scripts.js' %}"></script>
+{% endblock contenido %}
+
+{% block foter %}{% endblock foter %}

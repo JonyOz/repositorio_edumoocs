@@ -1,0 +1,149 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %}Panel de
+Admin{%endblock titulo %} {% load static %} {% block boton %}
+<a class="navbar-brand" href="{% url 'Administrador' %}">
+  <img
+    src="{% static '/edumocs/images/profile.png' %}"
+    width="30"
+    height="30"
+    class="d-inline-block align-top"
+    alt="Admin"
+  />
+</a>
+{% endblock boton %} {% block contenido %}
+
+
+<main class="container mt-5 pt-9">
+  <h1>Administrador de Cursos Edumocs</h1>
+  <div class="row">
+    <div class="col-md-3 text-center profile-container">
+      <img
+        src="{% static '/edumocs/images/profile.png' %}"
+        alt="Profile Picture"
+        class="profile-picture img-thumbnail mb-3"
+      />
+      <div class="btn-group mb-4">
+        <a href="{% url 'Logout' %}"
+          ><button class="btn btn-red">Cerrar Sesión</button></a
+        >
+        <a href="{% url 'password_reset' %}"><button class="btn btn-custom">Cambiar Contraseña</button></a>
+      </div>
+    </div>
+
+    <div class="container mt-0 p-0">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              Cursos
+            </tr>
+            <tr>
+              Pre-inscritos
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for curso in cursos %}
+            <tr>
+              <td>{{curso.nombre}}</td>
+              <td>{{curso.cupos_restantes}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-13">
+      <form method="get" action="{% url 'Filtros' %}">
+        <label for="profesor">Profesor:</label>
+        <input type="text" name="profesor" id="profesor">
+        
+        <label for="fecha_inicio">Fecha de Inicio:</label>
+        <input type="date" name="fecha_inicio" id="fecha_inicio">
+        
+        <label for="fecha_termino">Fecha de Término:</label>
+        <input type="date" name="fecha_termino" id="fecha_termino">
+        
+        <button type="submit">Filtrar</button>
+      </form>
+      <form method="get" action="{% url 'Filtros' %}">
+        <input type="text" name="q" placeholder="Buscar cursos">
+        <button type="submit">Buscar</button>
+    </form>
+          
+    
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Clave</th>
+              <th>Nombre</th>
+              <th>Profesor</th>
+              <th>Descripción</th>
+              <th>Duración Horas</th>
+              <th>Fecha de Inicio</th>
+              <th>Fecha de Término</th>
+              <th>Costo</th>
+              <th>Cupos</th>
+              <th>Imagen</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for curso in cursos %}
+            <tr>
+              <td>{{ curso.id }}</td>
+              <td>{{ curso.nombre }}</td>
+              <td>{{curso.profesor}}</td>
+              <td class="td-width">
+                <div class="container mt-4">
+                  <div class="row">
+                    <div class="course-item">
+                      {{ curso.descripcion|truncatechars:100 }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ curso.horas }}</td>
+              <td>{{ curso.fecha_inicio }}</td>
+              <td>{{ curso.fecha_termino }}</td>
+              <td>{{ curso.costo }}</td>
+              <td>{{ curso.cupos }}</td>
+              <td>
+                <div class="course-item">
+                  <img
+                    src="{{ curso.imagen.url }}"
+                    alt="Course Image"
+                    class="course-img img-thumbnail"
+                  />
+                </div>
+              </td>
+              <td>
+                <a href="{% url 'ConsultaIndividual' curso.id %}">
+                  <button class="btn btn-edit btn-sm">&#x270E;</button>
+                </a>
+                <a href="{% url 'Eliminar' curso.id %}">
+                  <button class="btn btn-delete btn-sm">&#x1F5D1;</button>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-4">
+        <a href="{% url 'Alta' %}">
+          <button class="btn btn-custom">Nuevo Curso</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+<form
+  id="logout-form"
+  action="{% url 'logout' %}"
+  method="post"
+  style="display: none"
+>
+  {% csrf_token %}
+</form>
+{% endblock contenido %}

@@ -1,0 +1,48 @@
+{% extends "contenido/BaseNavBar.html" %} {% load static %} {% block contenido%}
+<header class="heropre">
+  <h1>Pre-Inscripción para {{curso.nombre}}</h1>
+</header>
+<main>
+  <section class="preinscription-section">
+    <div class="cost-info">
+      <h2>Costo: {{curso.costo}} MXN</h2>
+      <p>
+        Gracias por tu preferencia asegúrate de que todos tus datos estén
+        correctos y disfruta de la experiencia próxima en tus clases. Si tienes
+        dudas siempre puedes consultar el foro de ayuda de preguntas frecuentes
+        donde encontrarás respuestas a tus preguntas y dudas respecto a los
+        apartados y modalidades de la plataforma y los cursos.
+      </p>
+      <a href="{% url 'Preguntas' %}"
+        ><button class="learn-more-btn">Aprender Más</button></a
+      >
+    </div>
+    <div class="form-container">
+      <form action="{% url "Preinscripcion"  curso.id%}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="ciudad">Ciudad</label>
+          <input type="text" id="ciudad" name="ciudad" required />
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" required />
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <input type="text" id="estado" name="estado" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" id="email" name="correo" required />
+        </div>
+        <button type="submit" class="submit-btn">Enviar</button>
+      </form>
+    </div>
+  </section>
+</main>
+{% endblock contenido %}

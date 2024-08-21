@@ -1,0 +1,26 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Responder Pregunta{% endblock titulo %}
+{% block contenido %}
+<div class="container chat-container">
+    <div class="container mt-5 pt-5">
+        <h1 class="display-4">Responder Pregunta</h1>
+        
+        <form method="post" action="{% url 'responder_pregunta' pregunta.id %}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="respuesta">Respuesta:</label>
+                <textarea class="form-control" id="respuesta" name="respuesta" rows="4"></textarea>
+            </div>
+            
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="es_predefinida" name="es_predefinida" {% if pregunta.es_predefinida %}checked{% endif %}>
+                <label class="form-check-label" for="es_predefinida">Marcar como pregunta predefinida</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-3">Enviar Respuesta</button>
+        </form>
+    </div>
+</div>
+
+{% endblock contenido %}

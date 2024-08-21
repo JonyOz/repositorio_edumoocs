@@ -1,0 +1,15 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %} Curso añadido con
+éxito {%endblock titulo %} {% block contenido %}
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <div class="alert alert-success" role="alert">
+        <h2>Curso añadido con éxito</h2>
+      </div>
+      <a href="{% url 'Administrador' %}">
+        <button class="btn btn-primary mt-3">Continuar</button>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}

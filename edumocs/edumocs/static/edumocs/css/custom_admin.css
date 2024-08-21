@@ -1,0 +1,219 @@
+/* custom_admin.css */
+html[data-theme="light"],
+:root {
+    --primary: #79aec8;
+    --secondary: linear-gradient(45deg, #46bdd4, #a8dadc);
+    --accent: #fafafa;/*Este controla el titulo de la barra*/
+    --primary-fg: #ffffff;/*Este controla el color de los textos de las barras de los modulos*/
+
+    --body-fg: #333;
+    --body-bg: #fff;
+    --body-quiet-color: #666;
+    --body-loud-color: #000;
+    
+    --header-color: rgb(255, 255, 255);/*El que dice welcome usuario*/
+    --header-branding-color: var(--accent);
+    --header-bg: var(--secondary);
+    --header-link-color: var(--primary-fg);
+
+    --breadcrumbs-fg: #06131a;/*El que dice cursos en la barra de las rutas debajo de DJango administrador*/
+    --breadcrumbs-link-fg: var(--body-bg);
+    --breadcrumbs-bg: linear-gradient(45deg, #46bdd4, #a8dadc) ;/*Controla el color la barra debajo de la barra de titulo*/
+
+    --link-fg: #417893;
+    --link-hover-color: #036;
+    --link-selected-fg: var(--secondary);
+
+    --hairline-color: #e8e8e8;
+    --border-color: #ccc;
+
+    --error-fg: #ba2121;
+
+    --message-success-bg: #dfd;
+    --message-warning-bg: #ffc;
+    --message-error-bg: #ffefef;
+
+    --darkened-bg: #f8f8f8; /* A bit darker than --body-bg */
+    --selected-bg: #e4e4e4; /* E.g. selected table cells */
+    --selected-row: #ffc;
+
+    --button-fg: #fff;
+    --button-bg: var(--secondary);
+    --button-hover-bg: #205067;
+    --default-button-bg: #205067;
+    --default-button-hover-bg: var(--secondary);
+    --close-button-bg: #747474;
+    --close-button-hover-bg: #333;
+    --delete-button-bg: #ba2121;
+    --delete-button-hover-bg: #a41515;
+
+    --object-tools-fg: var(--button-fg);
+    --object-tools-bg: var(--close-button-bg);
+    --object-tools-hover-bg: var(--close-button-hover-bg);
+
+    --font-family-primary:
+        "Segoe UI",
+        system-ui,
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji";
+    --font-family-monospace:
+        ui-monospace,
+        Menlo,
+        Monaco,
+        "Cascadia Mono",
+        "Segoe UI Mono",
+        "Roboto Mono",
+        "Oxygen Mono",
+        "Ubuntu Monospace",
+        "Source Code Pro",
+        "Fira Mono",
+        "Droid Sans Mono",
+        "Courier New",
+        monospace,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji";
+
+    color-scheme: light;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: linear-gradient(45deg, #78C4D4, #a8dadc);
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+thead {
+    background: linear-gradient(45deg, #78C4D4, #a8dadc);
+    color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+button, input[type="submit"], input[type="button"] {
+    background-color: #2b8ef1; /* Fondo de los botones */
+    color: white; /* Color del texto de los botones */
+}
+
+button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #003366; /* Fondo de los botones al pasar el cursor */
+    color: white; /* Color del texto de los botones al pasar el cursor */
+}
+
+.module h2 {
+    background: linear-gradient(45deg, #78C4D4, #a8dadc);/* Fondo del encabezado */
+    color: white; /* Color del texto del encabezado */
+}
+
+
+/* Encabezados de las tablas */
+table#result_list th {
+    background: linear-gradient(45deg, #78C4D4, #a8dadc); /* Fondo de los encabezados de las tablas */
+    color: white; /* Color del texto de los encabezados de las tablas */
+}
+
+/* Celdas de las tablas */
+table#result_list td {
+    background: linear-gradient(45deg, #f4f5f5, #b2b7b8);/* Fondo de las celdas de las tablas */
+    color: #030303; /* Color del texto de las celdas de las tablas */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    font-family: var(--font-family-primary);
+    color: var(--body-fg);
+    background: var(--body-bg);
+}
+
+h1 {
+    margin: 0 0 20px;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--body-loud-color);
+}
+
+h2 {
+    font-size: 1.25rem;
+    margin: 1em 0 .5em 0;
+}
+
+h3 {
+    font-size: 1rem;
+    margin: .8em 0 .3em 0;
+    color: var(--body-quiet-color);
+    font-weight: bold;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: var(--button-bg);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: var(--button-fg);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.button:active, input[type=submit]:active, input[type=button]:active,
+.button:focus, input[type=submit]:focus, input[type=button]:focus,
+.button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: var(--button-hover-bg);
+}
+
+#header {
+    background: var(--header-bg);
+    color: var(--header-color);
+}
+
+#header h1 {
+    color: var(--header-color);
+}
+
+#header a:link, #header a:visited {
+    color: var(--header-link-color);
+}
+
+a:link, a:visited {
+    color: var(--link-fg);
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+}
+
+a:focus, a:hover {
+    color: var(--link-hover-color);
+}
+
+div.breadcrumbs {
+    background: var(--breadcrumbs-bg);
+    padding: 10px 40px;
+    border: none;
+    color: var(--breadcrumbs-fg);
+    text-align: left;
+}
+
+div.breadcrumbs a {
+    color: var(--breadcrumbs-link-fg);
+}
+
+div.breadcrumbs a:focus, div.breadcrumbs a:hover {
+    color: var(--breadcrumbs-fg);
+}

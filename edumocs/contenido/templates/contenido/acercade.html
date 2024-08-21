@@ -1,0 +1,72 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %}Acerca de nosotros{%endblock titulo %} {% load static %} {% block contenido %}
+<body class="bodyacercade">
+  <div class="heroacercade">
+    <div class="heroacercade-content">
+      <h1>Conocenos</h1>
+      <p>
+        Conoce nuestra empresa y nuestros valores para nosotros el valor de la
+        educación y la calidad de esta son lo más importante por eso te
+        invitamos a conocer las plataformas y desarrollo así como la integración
+        con la tecnología y la educación.
+      </p>
+      <a href="{% url 'Cursos' %}" class="btn btn-primary">Pre - Inscripción</a>
+    </div>
+    <div class="hero-image">
+      <img
+        src="{% static 'edumocs/images/hero-image-acercade.jpg' %}"
+        alt="Hero Image"
+      />
+    </div>
+  </div>
+
+  <section class="aboutacercade-us">
+    <h2>¿Quiénes somos?</h2>
+    <p>
+      Nosotros somos una empresa de desarrollo de software orientados a la
+      creación de plataformas educativas con la filosofía de proteger y
+      salvaguardar la integridad de los datos del usuario así como brindar un
+      servicio óptimo y promover los conocimientos a través de nuestras
+      plataformas.
+    </p>
+  </section>
+
+  <section class="testimonials">
+    <div id="testimonialsCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="testimonial">
+            <img src="{% static "edumocs/images/profile.png" %}"
+            class="profileacercade-icon">
+            <p>
+              Nuestro compromiso siempre es apoyarte, por ello hemos diseñado una experiencia de atención las 24h del día sin descanso
+              para que tus dudas no crezcan y siempre tengas las respuestas a ellas en el momento que quieras. Te invitamos a probar nuestros
+              chat de ayuda para despejar tus dudas, en el encontrarás preguntas y respuestas de parte  de nuestros asistentees.
+            </p>
+            <a href="{% url "Tablon" %}"><span class="author">Ayuda a Usuarios</span></a>
+          </div>
+        </div>
+        <!-- Más comentarios aquí -->
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#testimonialsCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#testimonialsCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </section>
+
+  {% endblock contenido %}
+</body>

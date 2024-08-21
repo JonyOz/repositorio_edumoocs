@@ -1,0 +1,27 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Chat de Ayuda - Administrador{% endblock titulo %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="container chat-container">
+    <h2>Responder a la Pregunta</h2>
+    
+    <!-- Mostrar la pregunta seleccionada -->
+    <div>
+        <strong>Pregunta:</strong>
+        <p>{{ pregunta.mensaje }}</p>
+    </div>
+
+    <!-- Área para escribir la respuesta -->
+    <textarea id="respuesta-input" placeholder="Escribe tu respuesta aquí..."></textarea>
+    <button id="respuesta-submit">Responder</button>
+
+    <!-- Pasar el CSRF token y el ID de la pregunta al archivo JS -->
+    <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+    <input type="hidden" id="pregunta-id" value="{{ pregunta.id }}">
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'edumocs/js/respuesta.js' %}"></script>
+{% endblock contenido %}

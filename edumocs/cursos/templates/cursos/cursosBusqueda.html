@@ -1,0 +1,42 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Cursos{% endblock titulo %}
+
+{% block contenido %}
+{% load static %}
+<main>
+    <div class="container mt-5 pt-5">
+        <h1 class="display-4">Cursos</h1>
+        <div class="search-bar">
+            <form method="get" action="{% url 'Buscar' %}">
+                <input type="text" name="q" placeholder="Buscar">
+                <button type="submit">
+                    <img src="{% static 'edumocs/images/busqueda.webp' %}" alt="Buscar">
+                </button>
+            </form>
+        </div>
+        
+        <div class="courses">
+            {% if cursos %}
+                {% for curso in cursos %}
+                <a href = "{% url 'CursoContenido' curso.id %}">
+                    <div class="course-item">
+                        {% if curso.imagen %}
+                            <img src="{{ curso.imagen.url }}" alt="Course Image">
+                        {% else %}
+                            <img src="{% static 'path/to/default-image.png' %}" alt="Default Course Image">
+                        {% endif %}
+                        <div class="course-title">
+                            <h2>{{ curso.nombre }}</h2>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            {% else %}
+                <div class="no-courses-message">
+                    <p>No existe el curso deseado. Lo añadiremos pronto :3</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock contenido %}
