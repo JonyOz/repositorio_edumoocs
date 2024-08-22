@@ -1,0 +1,5 @@
+pillow ==  9.0.1
+phonenumbers == 8.13.43
+PyMySQL == 1.1.1
+django == 5.0.6
+
